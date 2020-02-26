@@ -8,9 +8,9 @@ from torchvision import models
 def do_classification_test(model_name, x):
 
     print("testing ", model_name)
+    open("classification_{}".format(model_name), 'a').close()
     torch.manual_seed(0)
-    model = models.__dict__[model_name](num_classes=1000)
-    model.eval()
+    model = models.__dict__[model_name](num_classes=1000, pretrained=True)
     py_output = model(x)
     print(py_output.size())
     return py_output
